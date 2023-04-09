@@ -5,7 +5,14 @@ import time
 
 # Twilio credentials
 account_sid = 'AC34c00e8f6ded6525d724ff4ec2550b71'
-auth_token = '9319a5aea770afc74e6269312529a97c'
+import random
+from twilio.rest import Client
+import schedule
+import time
+
+# Twilio credentials
+account_sid = 'AC34c00e8f6ded6525d724ff4ec2550b71'
+auth_token = '1aba653c18148988e14414bfc1402ae4'
 client = Client(account_sid, auth_token)
 
 # Your dad's phone number and your Twilio phone number
@@ -15,8 +22,8 @@ twilio_phone_number = 'whatsapp:+14155238886'
 
 def generate_lottery_numbers():
     main_numbers = sorted(random.sample(range(1, 51), 5))
-    extra_numbers = sorted(random.sample(range(1, 13), 2))
-    return main_numbers  + extra_numbers
+    extra_numbers = sorted(random.sample(range(1, 11), 2))
+    return main_numbers + extra_numbers
 
 
 def send_whatsapp_message():
@@ -34,11 +41,11 @@ def send_whatsapp_message():
 
 send_whatsapp_message()
 
-#Schedule the bot to send messages every Tuesday and Friday at 1 pm
+# # Schedule the bot to send messages every Tuesday and Friday at 1 pm
 schedule.every().tuesday.at("09:00").do(send_whatsapp_message)
 schedule.every().friday.at("09:00").do(send_whatsapp_message)
 
-# Keep the script running
+# # Keep the script running
 while True:
     schedule.run_pending()
     print('looping')
