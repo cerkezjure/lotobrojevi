@@ -5,10 +5,6 @@ import time
 
 # Twilio credentials
 account_sid = 'AC34c00e8f6ded6525d724ff4ec2550b71'
-import random
-from twilio.rest import Client
-import schedule
-import time
 
 # Twilio credentials
 account_sid = 'AC34c00e8f6ded6525d724ff4ec2550b71'
@@ -23,11 +19,10 @@ twilio_phone_number = 'whatsapp:+14155238886'
 def generate_lottery_numbers():
     main_numbers = sorted(random.sample(range(1, 51), 5))
     extra_numbers = sorted(random.sample(range(1, 13), 2))
-    main_str = " ".join(str(n) for n in main_numbers)
-    extra_str = ".".join(str(n) for n in extra_numbers)
-    numbers_str = main_str + " " + extra_str
+    main_str = ",".join(str(n) for n in main_numbers)
+    extra_str = ",".join(str(n) for n in extra_numbers)
+    numbers_str = main_str + " / " + extra_str
     return numbers_str
-
 
 
 def send_whatsapp_message():
