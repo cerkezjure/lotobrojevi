@@ -23,12 +23,15 @@ twilio_phone_number = 'whatsapp:+14155238886'
 def generate_lottery_numbers():
     main_numbers = sorted(random.sample(range(1, 51), 5))
     extra_numbers = sorted(random.sample(range(1, 13), 2))
-    return main_numbers + ["/"] + extra_numbers
+    main_str = ",".join(str(n) for n in main_numbers)
+    extra_str = ",".join(str(n) for n in extra_numbers)
+    numbers_str = main_str + " / " + extra_str
+    return numbers_str
 
 
 def send_whatsapp_message():
     lottery_numbers = generate_lottery_numbers()
-    message_body = f"Danasnji brojevi su: {', '.join(map(str, lottery_numbers))}"
+    message_body = f"Danasnji brojevi su: {lottery_numbers}"
 
     message = client.messages.create(
         body=message_body,
