@@ -22,7 +22,7 @@ twilio_phone_number = 'whatsapp:+14155238886'
 
 def generate_lottery_numbers():
     main_numbers = sorted(random.sample(range(1, 51), 5))
-    extra_numbers = sorted(random.sample(range(1, 11), 2))
+    extra_numbers = sorted(random.sample(range(1, 13), 2))
     return main_numbers + extra_numbers
 
 
